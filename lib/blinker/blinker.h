@@ -11,7 +11,7 @@ a pause. The process repeats again.
 
 
 void setup_blinker(int);  // pin number, address of a variable  
-void blinks(int);
-void loop_blinker();
+void blinks(int);         // set blinking number 
+void loop_blinker();     // should be in the main loop
 
 #endif
