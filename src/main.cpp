@@ -29,7 +29,7 @@ int MAX_GLOBALS = sizeof(globals)/sizeof(global_t);
 void setup(){
     Serial.begin(9600);
     cmdInit(&Serial); 
-    cmdAdd("hello", [](int argn, char** args){cmdGetStream()->print("Smail!!!");});
+    cmdAdd("hello", [](int argn, char** args){cmdGetStream()->println("Smail");});
     setup_globals();
     setup_blinker(BLINK_LED);
     blinks(0);
