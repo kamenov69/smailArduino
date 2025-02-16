@@ -39,6 +39,4 @@ LedOut::LedOut(uint8_t pin){
    pinMode(_pin, OUTPUT);
    digitalWrite(_pin,LOW);
 
-
-
 }

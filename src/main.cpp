@@ -1,5 +1,5 @@
 /*
-v0.1    Basic Arduino project.
+v0.2    Basic Arduino project.
 Started globals 
 
 
@@ -8,7 +8,6 @@ Started globals
 
 #include <Arduino.h>
 #include "main.h"
-//#include "blinker.h"
 #include "Cmd.h"
 #include "globals.h"
 #include "LedOut.h"
@@ -41,7 +40,7 @@ void setup(){
 
 void loop(){
     cmdPoll();
-    ledout.blinks(globals[index("mode")].value);
+    ledout.blinks(globals[index("mode")].value+1);
     ledout.loop_ledOut();
     //loop_blinker();
     //blinks(globals[index("mode")].value);
