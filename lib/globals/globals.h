@@ -7,8 +7,8 @@ extern int MAX_GLOBALS;
 extern const int ee_size;
 
 //typedef float globaldata_t ;
-typedef int globaldata_t ;
-
+//typedef int globaldata_t ;
+#define  globaldata_t int
 typedef struct __globals_
 {
     char *name;
