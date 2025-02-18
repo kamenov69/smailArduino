@@ -24,6 +24,7 @@ int index(String);
 void setup_globals(void);
 void globals_to_eeprom(bool);
 void globals_from_eeprom(void);
+float read_flt(int, char **);
 
 
 #endif

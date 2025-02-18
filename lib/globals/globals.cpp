@@ -57,30 +57,41 @@ void _list_gloabals(int nargs, char **args){
   }
 }
 
-void glob_reg(int nargs, char **args){
+float read_flt(int nargs, char **args){
+  float ret_value; 
+
+  if((nargs > 0)){
+    float  tmparg1 = (float)cmdStr2Num(args[0], 10);
+    int  tmparg2 = 0;
+    if (nargs > 1){ 
+      tmparg2 = cmdStr2Num(args[1], 10);
+    }
+    ret_value =  tmparg1*pow(10.0,tmparg2);
+    //cmdGetStream()->println(ret_value,3);
+  }
+  return ret_value;
+}
+
+
+void _glob_reg(int nargs, char **args){
   int iter;
   iter = index(args[0]); // args[0] = name of command 
   if((nargs > 1) && (iter < MAX_GLOBALS)){
-    int  tmparg1 = cmdStr2Num(args[1], 10);
-    int  tmparg2 = 0;
-    if (nargs > 2){ 
-      tmparg2 = cmdStr2Num(args[2], 10);
-    }
-    globaldata_t tmp = (globaldata_t)tmparg1*pow(10.0,tmparg2);
+    globaldata_t tmp = (globaldata_t)read_flt(--nargs, ++args);
     if(tmp < globals[iter].min_val) tmp = globals[iter].min_val;
     if(tmp > globals[iter].max_val) tmp = globals[iter].max_val;
     if(globals[iter].min_val != globals[iter].max_val ){ //not read only
          globals[iter].value = tmp; 
          globals[iter].updated = true;
-      } 
-    }
-    cmdGetStream()->println(globals[iter].value);
+    } 
+  }
+  cmdGetStream()->println(globals[iter].value);
 }
 
 void addGlobals(void){
   cmdGetStream()->println("Adding globals...");
   for(int index = 0; index < MAX_GLOBALS; index++){
-    cmdAdd(globals[index].name, glob_reg);
+    cmdAdd(globals[index].name,_glob_reg);
     //cmdGetStream()->println(globals[index].name);
   }
 }
