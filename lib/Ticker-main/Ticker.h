@@ -71,8 +71,9 @@ public:
 	 * @param resolution default MICROS for tickers under 70min, use MILLIS for tickers over 70 min
 	 *
 	 */
-	Ticker(fptr callback, uint32_t timer, uint32_t repeat = 0, resolution_t resolution = MICROS);
-
+	//Ticker(fptr callback, uint32_t timer, uint32_t repeat = 0, resolution_t resolution = MICROS);
+    Ticker(fptr callback, uint32_t timer, uint32_t repeat, resolution_t resolution);
+	Ticker(fptr callback, uint32_t timer);
 	/** destructor for the Ticker object
 	 *
 	 */
@@ -143,6 +144,8 @@ public:
 	 *
 	 */
 	uint32_t counter();
+
+	void attach_callback(fptr );
 
 private:
 	bool tick();

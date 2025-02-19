@@ -22,12 +22,16 @@ void LedOut::loop_ledOut(void){
    if(millis()> this->_clock){
      this->_clock = millis() + this->_cloclPerioud;
      this->_timer_callback();
-   } 
+   }
+  //this->ticker.update(); 
 }
 
 void LedOut::blinks(int blinks){
     this->_blinks = blinks;
 }
+
+//(class_name::*ptr_name) (argument_type) = &class_name::function_name;
+//void (LedOut::*method_pointer)()  = &LedOut::_timer_callback;
 
 LedOut::LedOut(uint8_t pin){
    this->_pin = pin;
@@ -35,7 +39,6 @@ LedOut::LedOut(uint8_t pin){
    this->_clock = millis() + this->_cloclPerioud;
    this->_blinks = 1;
    this->_temp_status =0;
-
    pinMode(_pin, OUTPUT);
    digitalWrite(_pin,LOW);
 

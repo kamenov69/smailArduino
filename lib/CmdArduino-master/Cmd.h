@@ -48,6 +48,7 @@
 #ifdef __EXTRAS__
 void cmdRedirect(Stream *str);
 //#define __ADDRESS__ "1314"
+float parse_float(int , char **);
  
 #endif
 

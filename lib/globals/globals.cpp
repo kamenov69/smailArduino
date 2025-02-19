@@ -57,27 +57,13 @@ void _list_gloabals(int nargs, char **args){
   }
 }
 
-float read_flt(int nargs, char **args){
-  float ret_value; 
-
-  if((nargs > 0)){
-    float  tmparg1 = (float)cmdStr2Num(args[0], 10);
-    int  tmparg2 = 0;
-    if (nargs > 1){ 
-      tmparg2 = cmdStr2Num(args[1], 10);
-    }
-    ret_value =  tmparg1*pow(10.0,tmparg2);
-    //cmdGetStream()->println(ret_value,3);
-  }
-  return ret_value;
-}
 
 
 void _glob_reg(int nargs, char **args){
   int iter;
   iter = index(args[0]); // args[0] = name of command 
   if((nargs > 1) && (iter < MAX_GLOBALS)){
-    globaldata_t tmp = (globaldata_t)read_flt(--nargs, ++args);
+    globaldata_t tmp = (globaldata_t)parse_float(--nargs, ++args);
     if(tmp < globals[iter].min_val) tmp = globals[iter].min_val;
     if(tmp > globals[iter].max_val) tmp = globals[iter].max_val;
     if(globals[iter].min_val != globals[iter].max_val ){ //not read only

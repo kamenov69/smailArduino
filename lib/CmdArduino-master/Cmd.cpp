@@ -217,6 +217,32 @@ void cmdPoll()
 
 
 #ifdef __EXTRAS__
+
+/*********************************************************************** */
+/*! 
+   Parse float form 2 arguments arg1*pow(10, arg2) 
+   Returns a float
+
+   args: narg >1 , ["arg1", "arg2"]
+*/
+/*********************************************************************** */
+
+float parse_float(int nargs, char **args){
+    float ret_value; 
+  
+    if((nargs > 0)){
+      float  tmparg1 = (float)cmdStr2Num(args[0], 10);
+      int  tmparg2 = 0;
+      if (nargs > 1){ 
+        tmparg2 = cmdStr2Num(args[1], 10);
+      }
+      ret_value =  tmparg1*pow(10.0,tmparg2);
+      //cmdGetStream()->println(ret_value,3);
+    }
+    return ret_value;
+  }
+  
+
 /*********************************************************************** */
 /*! 
     Iterate and print all added commands 

@@ -34,6 +34,9 @@ Ticker::Ticker(fptr callback, uint32_t timer, uint32_t repeat, resolution_t reso
 	lastTime = 0;
 	counts = 0;
 	}
+Ticker::Ticker(fptr callback, uint32_t timer){
+	Ticker( callback,  timer,  0, MICROS);
+}
 
 Ticker::~Ticker() {}
 
@@ -113,3 +116,7 @@ status_t Ticker::state() {
 uint32_t Ticker::counter() {
 	return counts;
 	}
+
+void Ticker::attach_callback(fptr callback ){
+	this->callback = callback;
+}
